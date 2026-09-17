@@ -278,3 +278,9 @@ select m1_0.id,m1_0.activity_score,m1_0.create_date,m1_0.modify_date,m1_0.nickna
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52)
+2026-09-17 17:19:08.998612+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPOST"; SQL statement:
+SELECT * FROMPOST [42000-240]
+2026-09-17 17:19:11.634059+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPOST POST"; SQL statement:
+SELECT * FROMPOST POST [42000-240]
