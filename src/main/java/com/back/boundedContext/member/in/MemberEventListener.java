@@ -2,7 +2,7 @@ package com.back.boundedContext.member.in;
 
 
 import com.back.boundedContext.member.domain.Member;
-import com.back.boundedContext.member.app.MemberService;
+import com.back.boundedContext.member.app.MemberFacade;
 import com.back.shared.post.event.PostCommentCreatedEvent;
 import com.back.shared.post.event.PostCreatedEvent;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +16,13 @@ import static org.springframework.transaction.event.TransactionPhase.AFTER_COMMI
 @Component
 @RequiredArgsConstructor
 public class MemberEventListener {
-    private MemberService memberService;
+    private MemberFacade memberFacade;
 
     //글 작성 점수 3점 올림
     @TransactionalEventListener(phase = AFTER_COMMIT)
     @Transactional(propagation = REQUIRES_NEW)
     public void handle(PostCreatedEvent event) {
-        Member member = memberService.findById(event.getPost().getAuthorId()).get();
+        Member member = memberFacade.findById(event.getPost().getAuthorId()).get();
 
         member.increaseActivityScore(3);
     }
@@ -31,7 +31,7 @@ public class MemberEventListener {
     @TransactionalEventListener(phase = AFTER_COMMIT)
     @Transactional(propagation = REQUIRES_NEW)
     public void handle(PostCommentCreatedEvent event) {
-        Member member = memberService.findById(event.getPostComment().getAuthorId()).get();
+        Member member = memberFacade.findById(event.getPostComment().getAuthorId()).get();
 
         member.increaseActivityScore(1);
     }
