@@ -6,7 +6,7 @@ import com.back.global.eventpublisher.EventPublisher;
 import com.back.global.exception.DomainException;
 import com.back.global.rsData.RsData;
 import com.back.shared.member.dto.MemberDto;
-import com.back.shared.member.event.MemberJoinEvent;
+import com.back.shared.member.event.MemberJoinedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class MemberJoinUseCase {
         });
         Member member = memberRepository.save(new Member(username, password, nickname));
 
-        eventPublisher.publish(new MemberJoinEvent(new MemberDto(member)));
+        eventPublisher.publish(new MemberJoinedEvent(new MemberDto(member)));
 
         return new RsData<>("201-1","%d번 회원이 생성되었습니다.".formatted(member.getId()), member);
     }
