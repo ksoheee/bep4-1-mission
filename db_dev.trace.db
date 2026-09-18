@@ -284,3 +284,7 @@ SELECT * FROMPOST [42000-240]
 2026-09-17 17:19:11.634059+09:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPOST POST"; SQL statement:
 SELECT * FROMPOST POST [42000-240]
+2026-09-18 12:49:21.847699+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM MEMBER_MEMBER \000d\000a[*]SELECT * FROM POST_MEMBER"; SQL statement:
+SELECT * FROM MEMBER_MEMBER 
+SELECT * FROM POST_MEMBER [42000-240]
