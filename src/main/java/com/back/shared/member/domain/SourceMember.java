@@ -32,6 +32,6 @@ public abstract class SourceMember extends BaseMember {
     private LocalDateTime modifyDate;
 
     public SourceMember(String username, String password, String nickname) {
-        super(username, password, nickname);
+        super(username, password, nickname,0); //최조에 만드는 것이기 때문에 스코어 0
     }
 }
