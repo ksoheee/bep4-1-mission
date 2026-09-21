@@ -1,8 +1,9 @@
 package com.back.boundedContext.cash.in;
 
+import com.back.boundedContext.cash.app.CashCompleteOrderPaymentUseCase;
 import com.back.boundedContext.cash.app.CashFacade;
-import com.back.boundedContext.cash.domain.CashMember;
-import com.back.shared.cash.CashMemberCreatedEvent;
+import com.back.shared.cash.event.CashMemberCreatedEvent;
+import com.back.shared.market.event.MarketOrderPaymentRequestedEvent;
 import com.back.shared.member.event.MemberJoinedEvent;
 import com.back.shared.member.event.MemberModifiedEvent;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import static org.springframework.transaction.event.TransactionPhase.AFTER_COMMI
 @RequiredArgsConstructor
 public class CashEventListener {
     private final CashFacade cashFacade;
+    private final CashCompleteOrderPaymentUseCase cashCompleteOrderPaymentUseCase;
 
     @TransactionalEventListener(phase = AFTER_COMMIT)
     @Transactional(propagation = REQUIRES_NEW)
@@ -35,4 +37,8 @@ public class CashEventListener {
     public void handle(CashMemberCreatedEvent event) {
         cashFacade.createWallet(event.getMember());
     }
+
+    @TransactionalEventListener(phase = AFTER_COMMIT)
+    @Transactional(propagation = REQUIRES_NEW)
+    public void handle(MarketOrderPaymentRequestedEvent event) {cashFacade.handle(event);}
 }

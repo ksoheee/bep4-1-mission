@@ -1,4 +1,4 @@
-package com.back.shared.cash;
+package com.back.shared.cash.dto;
 
 import com.back.boundedContext.cash.domain.CashMember;
 import lombok.AllArgsConstructor;

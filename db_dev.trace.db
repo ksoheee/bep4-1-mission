@@ -288,3 +288,6 @@ SELECT * FROMPOST POST [42000-240]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM MEMBER_MEMBER \000d\000a[*]SELECT * FROM POST_MEMBER"; SQL statement:
 SELECT * FROM MEMBER_MEMBER 
 SELECT * FROM POST_MEMBER [42000-240]
+2026-09-21 17:43:12.650042+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMMARKET_ORDER_ITEM"; SQL statement:
+SELECT * FROMMARKET_ORDER_ITEM [42000-240]
