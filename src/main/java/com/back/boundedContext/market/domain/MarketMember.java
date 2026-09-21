@@ -13,8 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class MarketMember extends ReplicaMember {
-    public MarketMember(int id, LocalDateTime createData, LocalDateTime modifyDate, String username, String password, String nickname, int activityScore) {
-        super(id, createData, modifyDate, username, password, nickname, activityScore);
-
+    public MarketMember(int id, LocalDateTime createDate, LocalDateTime modifyDate, String username, String password, String nickname, int activityScore) {
+        super(id, createDate, modifyDate, username, password, nickname, activityScore);
     }
 }
