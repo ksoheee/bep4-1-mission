@@ -36,7 +36,7 @@ public class MemberDataInit {
     public void makeBaseMembers() {
         if(memberFacade.count()>0) return;
 
-        Member systemMember = memberFacade.join("System","1234","시스템").getData();
+        Member systemMember = memberFacade.join("system","1234","시스템").getData();
         Member holdingMember = memberFacade.join("holding", "1234", "홀딩").getData();
         Member adminMember = memberFacade.join("admin", "1234", "관리자").getData();
         Member user1Member = memberFacade.join("user1", "1234", "유저1").getData();
