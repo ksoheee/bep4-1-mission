@@ -10,7 +10,6 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +42,20 @@ public class Order extends BaseIdAndTime {
         });
     }
 
+    public OrderDto toDto() {
+        return new OrderDto(
+                getId(),
+                getCreateDate(),
+                getModifyDate(),
+                buyer.getId(),
+                buyer.getNickname(),
+                price,
+                salePrice,
+                requestPaymentDate,
+                paymentDate
+        );
+    }
+
     public void addItem(Product product) {
         OrderItem orderItem = new OrderItem(
                 this,
@@ -60,7 +73,7 @@ public class Order extends BaseIdAndTime {
 
     public void requestPayment(long pgPaymentAmount){
         requestPaymentDate = LocalDateTime.now();
-        publishEvent(new MarketOrderPaymentRequestedEvent(new OrderDto(this),pgPaymentAmount));
+        publishEvent(new MarketOrderPaymentRequestedEvent(toDto(),pgPaymentAmount));
     }
 
     public void completePayment(){
