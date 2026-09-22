@@ -19,6 +19,7 @@ public class CashFacade {
     private final CashCreateWalletUseCase cashCreateWalletUseCase;
     private final CashCompleteOrderPaymentUseCase cashCompleteOrderPaymentUseCase;
 
+
     @Transactional
     public CashMember syncMember(MemberDto member) {
         return cashSyncMemberUseCase.syncMember(member);
@@ -42,5 +43,10 @@ public class CashFacade {
     @Transactional
     public void handle(MarketOrderPaymentRequestedEvent event) {
         cashCompleteOrderPaymentUseCase.handle(event);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Wallet> findWalletByHolderId(int holderId) {
+        return cashSupport.findWalletByHolderId(holderId);
     }
 }
